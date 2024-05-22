@@ -54,9 +54,9 @@ const playRound = () => {
 let computerScore = 0;
 let playerScore = 0;
 
-console.log('========== ROCK, PAPER, SCISSORS ==========');
-for (let i = 1; i <= 5; i++) {
-  console.log(`### ROUND ${i} ###`);
-  playRound();
-}
-console.log('================= THE END =================');
+// console.log('========== ROCK, PAPER, SCISSORS ==========');
+// for (let i = 1; i <= 5; i++) {
+//   console.log(`### ROUND ${i} ###`);
+//   playRound();
+// }
+// console.log('================= THE END =================');
