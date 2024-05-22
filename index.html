@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Rock, paper, scissors</title>
   </head>
   <body>
@@ -12,18 +13,20 @@
     </header>
 
     <main>
-      <h2>Round <span class="round">1</span></h2>
+      <h2>Round 1</h2>
 
-      <div class="game--player">
-        <h3>PLAYER</h3>
-        <div class="choice--player"></div>
-        <p class="score">0</p>
-      </div>
+      <div class="game">
+        <div class="info info--player">
+          <h3>PLAYER</h3>
+          <div class="choice choice--player">✂️</div>
+          <p class="score">0</p>
+        </div>
 
-      <div class="game--computer">
-        <h3>COMPUTER</h3>
-        <div class="choice--computer"></div>
-        <p class="score">0</p>
+        <div class="info info--computer">
+          <h3>COMPUTER</h3>
+          <div class="choice choice--computer">🪨</div>
+          <p class="score">0</p>
+        </div>
       </div>
 
       <div class="choices">
