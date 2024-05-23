@@ -128,3 +128,62 @@ i {
 i:hover {
   transform: rotate(360deg);
 }
+
+/* MODAL WINDOW */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+
+  background-color: #c0bfbf;
+  padding: 4rem;
+  border-radius: 10px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+
+  color: #1e8000;
+  font-size: 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+.winner {
+  font-size: 52px;
+}
+
+.final-score {
+  font-size: 72px;
+}
+
+.close-modal {
+  position: absolute;
+  top: -0.5rem;
+  right: 1.5rem;
+  font-size: 3.5rem;
+  color: #1e8000;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.151);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+/* .hidden {
+  display: none;
+} */

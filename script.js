@@ -6,6 +6,11 @@ const playerScoreEl = document.querySelector('.score--player');
 const computerScoreEl = document.querySelector('.score--computer');
 const playerChoiceEl = document.querySelector('.choice--player');
 const computerChoiceEl = document.querySelector('.choice--computer');
+const modalWindow = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const winnerEl = document.querySelector('.winner');
+const finalScore = document.querySelector('.final-score');
+const btnCloseModal = document.querySelector('.close-modal');
 
 const choices = ['🪨', '📃', '✂️'];
 
@@ -50,22 +55,32 @@ const gameOver = () => {
   return playerScore === 5 || computerScore === 5;
 };
 
+const endgameMessage = () => {
+  const winner = playerScore > computerScore ? 'PLAYER' : 'COMPUTER';
+  overlay.classList.toggle('hidden');
+  modalWindow.classList.toggle('hidden');
+
+  winnerEl.textContent = `${winner} wins the game after ${round} rounds!`;
+  finalScore.textContent = `${playerScore} : ${computerScore}`;
+};
+
 const movePlayed = btn => {
   if (gameOver()) {
-    const winner = playerScore > computerScore ? 'PLAYER' : 'COMPUTER';
-    console.log(winner);
-    roundEl.textContent = `${winner} wins the game!`;
+    endgameMessage();
     return;
   }
 
   playRound(btn);
 
   if (gameOver()) {
-    const winner = playerScore > computerScore ? 'PLAYER' : 'COMPUTER';
-    console.log(winner);
-    roundEl.textContent = `${winner} wins the game!`;
+    endgameMessage();
     return;
   }
+};
+
+const closeModal = () => {
+  overlay.classList.add('hidden');
+  modalWindow.classList.add('hidden');
 };
 
 let computerScore = 0;
@@ -74,4 +89,13 @@ let round = 1;
 
 choiceBtns.forEach(btn => {
   btn.addEventListener('click', () => movePlayed(btn));
+});
+
+// Closing the modal window
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modalWindow.classList.contains('hidden')) {
+    closeModal();
+  }
 });
