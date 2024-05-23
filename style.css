@@ -120,12 +120,12 @@ a {
   margin-left: 6px;
 }
 
-i {
+.fa-github {
   transition: all 0.3s ease-in-out;
   scale: 1.3;
 }
 
-i:hover {
+.fa-github:hover {
   transform: rotate(360deg);
 }
 
@@ -173,6 +173,24 @@ i:hover {
   background: none;
 }
 
+.play-again {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 36px;
+}
+
+.fa-rotate-right {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  scale: 1.2;
+  margin-left: 0.4rem;
+}
+
+.fa-rotate-right:hover {
+  transform: rotate(360deg);
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -184,6 +202,6 @@ i:hover {
   z-index: 5;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}

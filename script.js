@@ -11,6 +11,7 @@ const overlay = document.querySelector('.overlay');
 const winnerEl = document.querySelector('.winner');
 const finalScore = document.querySelector('.final-score');
 const btnCloseModal = document.querySelector('.close-modal');
+const btnNewGame = document.querySelector('.fa-rotate-right');
 
 const choices = ['🪨', '📃', '✂️'];
 
@@ -60,7 +61,7 @@ const endgameMessage = () => {
   overlay.classList.toggle('hidden');
   modalWindow.classList.toggle('hidden');
 
-  winnerEl.textContent = `${winner} wins the game after ${round} rounds!`;
+  winnerEl.textContent = `${winner} wins the game!`;
   finalScore.textContent = `${playerScore} : ${computerScore}`;
 };
 
@@ -83,10 +84,20 @@ const closeModal = () => {
   modalWindow.classList.add('hidden');
 };
 
+const newGame = () => {
+  closeModal();
+  computerScore = 0;
+  playerScore = 0;
+  round = 1;
+  showScore();
+  roundEl.textContent = `Round ${round}`;
+};
+
 let computerScore = 0;
 let playerScore = 0;
 let round = 1;
 
+// CHOICE BUTTONS event listeners
 choiceBtns.forEach(btn => {
   btn.addEventListener('click', () => movePlayed(btn));
 });
@@ -99,3 +110,6 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
+
+// Start new game
+btnNewGame.addEventListener('click', newGame);
