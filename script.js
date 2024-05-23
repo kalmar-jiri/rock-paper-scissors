@@ -1,23 +1,15 @@
 'use strict';
 
+const roundEl = document.querySelector('h2');
+const choiceBtns = document.querySelectorAll('button');
+const playerScoreEl = document.querySelector('.score--player');
+const computerScoreEl = document.querySelector('.score--computer');
+const playerChoiceEl = document.querySelector('.choice--player');
+const computerChoiceEl = document.querySelector('.choice--computer');
+
 const choices = ['🪨', '📃', '✂️'];
-const wordChoices = {
-  rock: '🪨',
-  paper: '📃',
-  scissors: '✂️',
-};
 
 const getComputerChoice = () => choices[Math.trunc(Math.random() * 3)];
-
-const getPlayerChoice = () => {
-  const playerChoice = prompt('Please choose 🪨, 📃 or ✂️ (use words).').toLowerCase();
-
-  if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
-    return wordChoices[playerChoice];
-  } else {
-    getPlayerChoice();
-  }
-};
 
 const evaluateRound = (computerMove, playerMove) => {
   if (computerMove === playerMove) return 2;
@@ -27,36 +19,52 @@ const evaluateRound = (computerMove, playerMove) => {
 };
 
 const showScore = () => {
-  console.log('---SCORE---');
-  console.log(`🤵 ${playerScore} : ${computerScore} 💻`);
+  playerScoreEl.textContent = playerScore;
+  computerScoreEl.textContent = computerScore;
 };
 
-const playRound = () => {
-  let computerChoice = getComputerChoice();
-  let playerChoice = getPlayerChoice();
-  let result = evaluateRound(computerChoice, playerChoice);
+const playRound = btn => {
+  roundEl.textContent = `Round ${round}`;
 
-  console.log('PLAYER vs. PC');
-  console.log(`${playerChoice} vs. ${computerChoice}`);
+  // Computer choice
+  let computerChoice = getComputerChoice();
+  computerChoiceEl.textContent = computerChoice;
+
+  // Player choice assignment
+  let playerChoice = btn.textContent;
+  playerChoiceEl.textContent = btn.textContent;
+
+  let result = evaluateRound(computerChoice, playerChoice);
   if (!result) {
-    console.log('COMPUTER wins!☹️');
     computerScore++;
   } else if (result === 1) {
-    console.log('PLAYER wins!!😁🥳');
     playerScore++;
   } else {
-    console.log("It's a TIE.👔");
   }
 
   showScore();
+  round++;
+};
+
+const gameOver = () => {
+  return playerScore >= 5 || computerScore >= 5;
+};
+
+const movePlayed = btn => {
+  playRound(btn);
+
+  if (gameOver()) {
+    const winner = playerScore > computerScore ? 'PLAYER' : 'COMPUTER';
+    console.log(winner);
+    roundEl.textContent = `${winner} wins the game!`;
+    return;
+  }
 };
 
 let computerScore = 0;
 let playerScore = 0;
+let round = 1;
 
-// console.log('========== ROCK, PAPER, SCISSORS ==========');
-// for (let i = 1; i <= 5; i++) {
-//   console.log(`### ROUND ${i} ###`);
-//   playRound();
-// }
-// console.log('================= THE END =================');
+choiceBtns.forEach(btn => {
+  btn.addEventListener('click', () => movePlayed(btn));
+});
