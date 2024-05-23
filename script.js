@@ -30,6 +30,7 @@ const showScore = () => {
 };
 
 const playRound = btn => {
+  round++;
   roundEl.textContent = `Round ${round}`;
 
   // Computer choice
@@ -49,7 +50,6 @@ const playRound = btn => {
   }
 
   showScore();
-  round++;
 };
 
 const gameOver = () => {
@@ -88,14 +88,16 @@ const newGame = () => {
   closeModal();
   computerScore = 0;
   playerScore = 0;
-  round = 1;
+  round = 0;
   showScore();
-  roundEl.textContent = `Round ${round}`;
+  roundEl.textContent = 'Make a 1st choice';
+  playerChoiceEl.textContent = '❔';
+  computerChoiceEl.textContent = '❔';
 };
 
 let computerScore = 0;
 let playerScore = 0;
-let round = 1;
+let round = 0;
 
 // CHOICE BUTTONS event listeners
 choiceBtns.forEach(btn => {
