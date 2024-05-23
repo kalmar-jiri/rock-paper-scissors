@@ -47,10 +47,17 @@ const playRound = btn => {
 };
 
 const gameOver = () => {
-  return playerScore >= 5 || computerScore >= 5;
+  return playerScore === 5 || computerScore === 5;
 };
 
 const movePlayed = btn => {
+  if (gameOver()) {
+    const winner = playerScore > computerScore ? 'PLAYER' : 'COMPUTER';
+    console.log(winner);
+    roundEl.textContent = `${winner} wins the game!`;
+    return;
+  }
+
   playRound(btn);
 
   if (gameOver()) {
